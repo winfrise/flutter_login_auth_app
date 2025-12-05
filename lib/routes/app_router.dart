@@ -19,7 +19,10 @@ class AppRouter {
       builder: (context) {
         // 1. 检查页面是否需要登录
         final needAuth = AppRoutes.needAuth(routeName);
-        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+        // 若设置 listen: true（默认）：Widget 会监听该 Provider 的状态变化，状态更新时自动重建；
+        // 若设置 listen: false：仅获取实例，不监听变化，Widget 不会重建。
+        final authProvider = Provider.of<AuthProvider>(context, listen: true);
 
         print('needAuth:' + needAuth.toString());
         print('isLogin:' + authProvider.isLoading.toString());
