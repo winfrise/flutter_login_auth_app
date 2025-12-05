@@ -8,6 +8,7 @@ import 'utils/http_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // 初始化网络请求
   HttpUtil.init();
 
@@ -26,10 +27,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '权限管理示例',
+
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+        primaryColor: const Color(0xFFFC6721), // 橙色
+        scaffoldBackgroundColor: Colors.grey.shade100,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: Color(0xFFFC6721),
+        ),
+      ),
+
       navigatorKey: navigatorKey, // 全局导航 key
       initialRoute: AppRoutes.home, // 启动页
+      // home: HomePage(), // initialRoute 和 home只能存在一个
       onGenerateRoute: AppRouter.generateRoute, // 自定义路由生成器
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // 隐藏调试标签
     );
   }
 }

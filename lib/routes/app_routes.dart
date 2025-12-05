@@ -3,6 +3,7 @@ class AppRoutes {
   // 公开页面（无需登录）
   static const login = '/login';
   static const splash = '/splash';
+  static const register = '/register';
 
   // 需登录页面
   static const home = '/home';

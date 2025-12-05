@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login_auth/pages/register_page.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/splash_page.dart';
@@ -7,6 +8,7 @@ import '../pages/home_page.dart';
 import '../pages/profile_page.dart';
 
 import '../providers/auth_provider.dart';
+import '../widgets/main_scaffold.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -40,8 +42,10 @@ class AppRouter {
             return const SplashPage();
           case AppRoutes.login:
             return LoginPage(redirectRoute: settings.arguments as String?);
+          case AppRoutes.register:
+            return RegisterPage();
           case AppRoutes.home:
-            return const HomePage();
+            return MainScaffold(body: const HomePage());
           case AppRoutes.profile:
             return const ProfilePage();
           default:

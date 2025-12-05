@@ -34,6 +34,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  dio: ^5.4.3+1  # 最新版本可查看 pub.dev
+  flutter_dotenv: ^5.1.0  # 可选，用于管理环境变量（如 baseUrl）
+  cookie_jar: ^4.0.1      # 可选，用于 cookie 管理
+  dio_cookie_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:
@@ -44,12 +48,13 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^6.0.0
+  flutter_lints: ^6.0.0 
 
   shared_preferences: ^2.2.2  # 本地持久化
   provider: ^6.1.1            # 状态管理
-  dio: ^5.4.0                  # 网络请求（接口鉴权）
   flutter_secure_storage: ^8.0.0 # 敏感信息加密存储（可选，替代 SharedPreferences 存 token）
+  http_mock_adapter: ^0.6.1  # 本地Mock HTTP服务器
+  json_serializable: ^6.7.1 # JSON序列化生成
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
