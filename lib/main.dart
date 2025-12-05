@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth_provider.dart';
 import 'routes/app_router.dart';
 import 'routes/app_routes.dart';
-import 'utils/http_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 初始化网络请求
-  HttpUtil.init();
+  // 2. 加载环境变量（默认加载 .env 文件）
+  // 若要加载指定环境（如生产环境）：await dotenv.load(fileName: ".env.prod");
+  await dotenv.load(fileName: ".env.dev");
 
   runApp(
     ChangeNotifierProvider(
@@ -37,8 +38,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color(0xFFFC6721),
         ),
       ),
-
-      navigatorKey: navigatorKey, // 全局导航 key
       initialRoute: AppRoutes.home, // 启动页
       // home: HomePage(), // initialRoute 和 home只能存在一个
       onGenerateRoute: AppRouter.generateRoute, // 自定义路由生成器
