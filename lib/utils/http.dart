@@ -22,34 +22,36 @@ Future<void> initHttp() async {
   final mockAdapter = DioAdapter(dio: dio);
   // 模拟登录接口（POST /user/login）
   mockAdapter.onPost(
-    'user/login',
+    '/api/user/login',
     (server) => server.reply(
       200,
       {
         "code": 200,
         "msg": "登录成功",
-        "data": {
-          "token": "mock_token_123456",
-          "username": "测试用户",
-          "userId": 1001,
-        },
+        "data": {"token": "mock_token_123456"},
       },
       delay: const Duration(milliseconds: 100), // 模拟网络延迟
     ),
   );
-  // 可继续添加其他接口的 Mock（如 getUserInfo 等）
+
+  // 获取用户信息接口
   mockAdapter.onGet(
-    'user/info',
+    '/api/user/info',
     (server) => server.reply(
       200,
       {
-        "code": 200,
-        "msg": "success",
-        "data": {
-          "userId": 1001,
-          "username": "测试用户",
-          "avatar": "https://example.com/avatar.png",
-          "phone": "13800138000",
+        'code': '000',
+        'message': 'UserInfo Success',
+        'data': {
+          "userId": "100002",
+          "username": "zhangsan",
+          "nickname": "张三",
+          "status": 1,
+          "avatar": "https://example.com/avatar/1008611.png",
+          "gender": 1,
+          "phone": "138****8000",
+          "email": "zhang***@example.com",
+          "birthday": "1990-01-01",
         },
       },
       delay: const Duration(milliseconds: 100), // 模拟网络延迟

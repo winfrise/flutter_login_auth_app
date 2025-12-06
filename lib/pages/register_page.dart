@@ -30,15 +30,25 @@ class _RegisterPageState extends State<RegisterPage> {
     Map<String, dynamic> res = await HttpUtil.get('/api/test');
     print(res);
 
-    // await UserApi.getUserInfo();
+    Map<String, dynamic> testData = await UserApi.test();
+    print(testData);
+
+    Map<String, dynamic> userInfo = await UserApi.getUserInfo();
+    print(userInfo);
+
+    Map<String, dynamic> postTest = await HttpUtil.post(
+      '/api/user/login2',
+      data: {'username': 'zhangsan', password: '123456'},
+    );
+    print(postTest);
 
     // 调用登录接口
-    // Map<String, dynamic> userData = await UserApi.login(
-    //   username: username,
-    //   password: password,
-    // );
+    Map<String, dynamic> userData = await UserApi.login(
+      username: username,
+      password: password,
+    );
 
-    // print(userData);
+    print(userData);
 
     // 登录成功，处理逻辑（如保存 token、跳转到首页）
     ScaffoldMessenger.of(
