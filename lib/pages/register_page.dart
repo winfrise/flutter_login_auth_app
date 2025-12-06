@@ -27,7 +27,10 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    Map<String, dynamic> res = await HttpUtil.get('/api/test');
+    Map<String, dynamic> res = await HttpUtil.get(
+      '/api/test',
+      params: {'p1': 1, 'p2': 2},
+    );
     print(res);
 
     Map<String, dynamic> testData = await UserApi.test();
@@ -37,8 +40,8 @@ class _RegisterPageState extends State<RegisterPage> {
     print(userInfo);
 
     Map<String, dynamic> postTest = await HttpUtil.post(
-      '/api/user/login2',
-      data: {'username': 'zhangsan', password: '123456'},
+      '/api/user/login',
+      data: {'username': 'admin', 'password': '123456'},
     );
     print(postTest);
 

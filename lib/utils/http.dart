@@ -32,6 +32,7 @@ Future<void> initHttp() async {
       },
       delay: const Duration(milliseconds: 100), // 模拟网络延迟
     ),
+    data: {'username': 'admin', 'password': '123456'},
   );
 
   // 获取用户信息接口
@@ -69,7 +70,6 @@ Future<void> initHttp() async {
   );
 
   dio.httpClientAdapter = mockAdapter;
-  print(dio);
   // }
   // 生产环境：无 Mock，直接使用真实接口（无需额外配置）
 }
@@ -85,7 +85,7 @@ class HttpUtil {
   }) async {
     final response = await dio.post(
       path,
-      data: data != null ? jsonEncode(data) : null,
+      data: data != null ? data : null,
       queryParameters: params,
       options: options,
     );
