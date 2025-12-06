@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'routes/app_router.dart';
 import 'routes/app_routes.dart';
+import 'utils/http.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,8 @@ void main() async {
   // 2. 加载环境变量（默认加载 .env 文件）
   // 若要加载指定环境（如生产环境）：await dotenv.load(fileName: ".env.prod");
   await dotenv.load(fileName: ".env.dev");
+
+  await initHttp(); // 初始化 HTTP（自动区分环境）
 
   runApp(
     ChangeNotifierProvider(

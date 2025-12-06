@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_auth/utils/http.dart';
 
 import '../api/user_api.dart';
 
@@ -26,35 +27,25 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    try {
-      // 显示加载中
-      // showDialog(
-      //   context: context,
-      //   barrierDismissible: false,
-      //   builder: (context) => const Center(child: CircularProgressIndicator()),
-      // );
+    Map<String, dynamic> res = await HttpUtil.get('/api/test');
+    print(res);
 
-      // 调用登录接口
-      Map<String, dynamic> userData = await UserApi.login(
-        username: username,
-        password: password,
-      );
+    // await UserApi.getUserInfo();
 
-      print(userData);
+    // 调用登录接口
+    // Map<String, dynamic> userData = await UserApi.login(
+    //   username: username,
+    //   password: password,
+    // );
 
-      // 登录成功，处理逻辑（如保存 token、跳转到首页）
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('登录成功')));
-      Navigator.pop(context); // 关闭加载弹窗
-      // Navigator.pushReplacementNamed(context, '/home');
-    } on DioException catch (e) {
-      // 处理错误
-      Navigator.pop(context); // 关闭加载弹窗
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.message ?? '服务器开小差了')));
-    }
+    // print(userData);
+
+    // 登录成功，处理逻辑（如保存 token、跳转到首页）
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('登录成功')));
+    // Navigator.pop(context); // 关闭加载弹窗
+    // Navigator.pushReplacementNamed(context, '/home');
   }
 
   @override
