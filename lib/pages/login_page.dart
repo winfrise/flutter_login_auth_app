@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_login_auth/api/user_api.dart';
 
 class LoginPage extends StatefulWidget {
   final String? redirectRoute; // 登录成功后跳转的路由
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // 表单控制器
-  final _phoneController = TextEditingController(text: "15158066163");
+  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -27,11 +28,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // 登录逻辑
-  void _handleLogin() {
+  void _handleLogin() async {
     if (_formKey.currentState!.validate()) {
       // 验证通过，执行登录请求
       String phone = _phoneController.text.trim();
       String password = _passwordController.text.trim();
+
+      Map<String, dynamic> res = await UserApi.login(
+        username: phone,
+        password: password,
+      );
+
       // TODO: 调用登录API
       ScaffoldMessenger.of(
         context,

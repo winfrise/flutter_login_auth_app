@@ -20,19 +20,34 @@ Future<void> initHttp() async {
   // if (dotenv.env['USE_MOCK'] == true) {
   print('初始化mock');
   final mockAdapter = DioAdapter(dio: dio);
-  // 模拟登录接口（POST /user/login）
+  // 用户名密码登陆
   mockAdapter.onPost(
     '/api/user/login',
     (server) => server.reply(
       200,
       {
-        "code": 200,
+        "code": '000',
         "msg": "登录成功",
         "data": {"token": "mock_token_123456"},
       },
       delay: const Duration(milliseconds: 100), // 模拟网络延迟
     ),
     data: {'username': 'admin', 'password': '123456'},
+  );
+
+  // 手机号登陆
+  mockAdapter.onPost(
+    '/api/user/login',
+    (server) => server.reply(
+      200,
+      {
+        "code": '000',
+        "msg": "登录成功",
+        "data": {"token": "mock_token_123456"},
+      },
+      delay: const Duration(milliseconds: 100), // 模拟网络延迟
+    ),
+    data: {'username': '13812345678', 'password': '123456'},
   );
 
   // 获取用户信息接口
@@ -59,6 +74,7 @@ Future<void> initHttp() async {
     ),
   );
 
+  // 测试
   mockAdapter.onGet(
     '/api/test',
     (server) => server.reply(
