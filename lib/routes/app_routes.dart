@@ -9,7 +9,7 @@ class AppRoutes {
   // 路由名称
   static const String login = '/login';
   static const String register = '/register';
-  static const String home = '/home';
+  static const String home = '/';
   static const String productDetail = '/productDetail';
 
   // 无需登录即可访问的路由列表
